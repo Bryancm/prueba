@@ -39,9 +39,9 @@ const PostItem: FC = () => {
             <Tag key={tag} text={tag} />
           ))}
         </div>
-        <button className="flex flex-row items-center">
-          <HeartIcon className="h-6 w-6 text-red-600 mr-2" />
-          <p className="text-red-600 text-sm">46</p>
+        <button className="flex flex-row items-center text-red-600 transition ease-in duration-200 hover:text-red-500 hover:scale-110">
+          <HeartIcon className="h-6 w-6  mr-2" />
+          <p className="text-sm">46</p>
         </button>
       </div>
     </div>

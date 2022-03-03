@@ -59,14 +59,18 @@ const UserProfile: NextPage = () => {
               </div>
             </div>
             <div className="flex flex-row justify-start items-center py-4">
-              <div className="flex flex-row m-1 items-center">
-                <MailIcon className="h-5 w-5 text-gray-400 mx-1" />
-                <p className="text-sm text-gray-400">sara.andersen@example.com</p>
-              </div>
-              <div className="flex flex-row m-1 items-center">
-                <PhoneIcon className="h-5 w-5 text-gray-400 mx-1" />
-                <p className="text-sm text-gray-400">92694011</p>
-              </div>
+              <a
+                href="mailto: sara.andersen@example.com"
+                className="flex flex-row m-1 items-center transition ease-in duration-200 text-gray-400 hover:text-gray-700 ">
+                <MailIcon className="h-5 w-5 mx-1" />
+                <p className="text-sm ">sara.andersen@example.com</p>
+              </a>
+              <a
+                href="tel:92694011"
+                className="flex flex-row m-1 items-center transition ease-in duration-200 text-gray-400 hover:text-gray-700">
+                <PhoneIcon className="h-5 w-" />
+                <p className="text-sm">92694011</p>
+              </a>
             </div>
           </div>
           <PostList />
