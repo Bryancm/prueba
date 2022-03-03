@@ -12,7 +12,7 @@ const UserItem: FC<Props> = ({ goToUserProfile }) => {
 
   return (
     <a onClick={onClick}>
-      <div className="flex flex-col justify-center items-center border rounded-md w-60 h-60 m-4 cursor-pointer transition ease-out duration-500 hover:shadow-lg hover:border-gray-400">
+      <div className="flex flex-col justify-center items-center border rounded-md w-80 h-80 sm:w-60 sm:h-60 m-4 cursor-pointer transition ease-out duration-500 hover:shadow-lg hover:border-gray-400">
         <Image
           className="rounded-full"
           layout="fixed"
@@ -21,8 +21,8 @@ const UserItem: FC<Props> = ({ goToUserProfile }) => {
           height={120}
         />
         <div className="m-2 text-center">
-          <h1 className="font-bold m-1">Mr. Rudi Droste</h1>
-          <p className="text-gray-400 text-sm">60d0fe4f5311236168a109ce</p>
+          <h1 className="font-bold m-1 text-lg sm:text-md">Mr. Rudi Droste</h1>
+          <p className="text-gray-400 text-md sm:text-sm">60d0fe4f5311236168a109ce</p>
         </div>
       </div>
     </a>

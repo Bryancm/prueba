@@ -3,7 +3,7 @@ import { SearchIcon } from "@heroicons/react/outline";
 
 const SearchInput: FC = () => {
   return (
-    <div className="m-4 w-1/2 relative">
+    <div className="m-4 w-5/6 md:w-1/2 relative">
       <SearchIcon className="absolute top-3 left-3 h-6 w-6 text-gray-400" />
       <input
         placeholder="Search"

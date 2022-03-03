@@ -13,7 +13,7 @@ const UserList: FC<Props> = ({ goToUserProfile }) => {
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-6xl font-bold m-4">People</h1>
       <SearchInput />
-      <div className="flex flex-row justify-center max-w-6xl flex-wrap p-4">
+      <div className="flex flex-row justify-center items-center w-full sm:max-w-6xl flex-wrap sm:p-4">
         {users.map((user) => (
           <UserItem key={user} goToUserProfile={goToUserProfile} />
         ))}
