@@ -1,11 +1,18 @@
-import type { FC } from "react";
+import { FC } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
-const UserItem: FC = () => {
+interface Props {
+  goToUserProfile: (href: string) => void;
+}
+
+const UserItem: FC<Props> = ({ goToUserProfile }) => {
+  const onClick = () => {
+    goToUserProfile("/user/1");
+  };
+
   return (
-    <Link href="/user/1">
-      <div className="flex flex-col justify-center items-center border rounded-md w-60 h-60 m-4 cursor-pointer">
+    <a onClick={onClick}>
+      <div className="flex flex-col justify-center items-center border rounded-md w-60 h-60 m-4 cursor-pointer transition ease-out duration-500 hover:shadow-lg hover:border-gray-400">
         <Image
           className="rounded-full"
           layout="fixed"
@@ -18,7 +25,7 @@ const UserItem: FC = () => {
           <p className="text-gray-400 text-sm">60d0fe4f5311236168a109ce</p>
         </div>
       </div>
-    </Link>
+    </a>
   );
 };
 
