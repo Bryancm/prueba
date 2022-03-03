@@ -2,9 +2,12 @@ import { useRouter } from "next/router";
 import type { NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
+
+import { PhoneIcon, MailIcon, CakeIcon, LocationMarkerIcon, UserCircleIcon } from "@heroicons/react/outline";
+
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import { PhoneIcon, MailIcon, CakeIcon, LocationMarkerIcon, UserCircleIcon } from "@heroicons/react/outline";
+import PostList from "../../components/Post/PostList";
 
 const UserProfile: NextPage = () => {
   const router = useRouter();
@@ -59,6 +62,7 @@ const UserProfile: NextPage = () => {
             </div>
           </div>
         </div>
+        <PostList />
       </div>
       <Footer />
     </div>
