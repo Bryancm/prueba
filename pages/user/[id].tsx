@@ -13,6 +13,7 @@ import { fetchUserPosts, fetchUserProfile } from "../../api/user";
 import { PostsResponse, User } from "../../types";
 import { capitalize } from "../../util/string";
 import { formatBirthday } from "../../util/date";
+import { toBase64, shimmer } from "../../util/placeholder";
 
 interface Props {
   user: User;
@@ -41,7 +42,16 @@ const UserProfile: NextPage<Props> = ({ user, postsResponse }) => {
         <div className="flex flex-col justify-center items-center">
           <div className="flex flex-col p-2 sm:p-4">
             <div className="flex flex-row justify-center items-center flex-wrap p-2">
-              <Image className="rounded-full" layout="fixed" src={user.picture} width={180} height={180} quality={100} />
+              <Image
+                placeholder="blur"
+                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(180, 180))}`}
+                className="rounded-full"
+                layout="fixed"
+                src={user.picture}
+                width={180}
+                height={180}
+                quality={100}
+              />
               <div className="flex flex-col justify-between p-1 sm:p-6">
                 <div className="m-3">
                   <h1 className="text-4xl text-gray-800 font-bold my-1">{name}</h1>

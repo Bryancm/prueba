@@ -5,6 +5,7 @@ import { HeartIcon } from "@heroicons/react/outline";
 import { Post } from "../../types";
 import { capitalize } from "../../util/string";
 import { formatPostDate } from "../../util/date";
+import { toBase64, shimmer } from "../../util/placeholder";
 
 interface Props {
   post: Post;
@@ -18,7 +19,16 @@ const PostItem: FC<Props> = ({ post }) => {
     <div className="flex flex-col border rounded-md w-11/12 sm:w-3/4 m-4 pt-4 px-4 pb-2">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
-          <Image className="rounded-full" layout="fixed" src={post.owner.picture} width={60} height={60} quality={100} />
+          <Image
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(60, 60))}`}
+            className="rounded-full"
+            layout="fixed"
+            src={post.owner.picture}
+            width={60}
+            height={60}
+            quality={100}
+          />
           <div className="mx-2">
             <h1 className="font-bold text-gray-800 text-sm sm:text-md">{name}</h1>
             <p className="text-gray-400 text-xs sm:text-sm">{post.owner.id}</p>
@@ -29,7 +39,14 @@ const PostItem: FC<Props> = ({ post }) => {
       <p className="text-gray-700 py-4 leading-relaxed">{post.text}</p>
       <div className="flex justify-center items-center p-2 relative h-80 sm:h-96">
         <a className="cursor-pointer" href={post.image} target="_blank">
-          <Image className="rounded " objectFit="cover" layout="fill" src={post.image} />
+          <Image
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(384, 384))}`}
+            className="rounded "
+            objectFit="cover"
+            layout="fill"
+            src={post.image}
+          />
         </a>
       </div>
       <div className="flex flex-row justify-between items-center pt-4">
