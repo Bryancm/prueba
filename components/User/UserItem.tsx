@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Image from "next/image";
 import { UserPreview } from "../../types";
+import { capitalize } from "../../util/string";
 
 interface Props {
   goToUserProfile: (href: string) => void;
@@ -8,7 +9,7 @@ interface Props {
 }
 
 const UserItem: FC<Props> = ({ goToUserProfile, user }) => {
-  const name = `${user.title} ${user.firstName} ${user.lastName}`;
+  const name = capitalize(`${user.title} ${user.firstName} ${user.lastName}`);
   const onClick = () => {
     goToUserProfile(`/user/${user.id}`);
   };

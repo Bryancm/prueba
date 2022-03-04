@@ -26,6 +26,7 @@ export type User = {
   phone: string;
   picture: string;
   location: Location;
+  updatedDate: string;
 };
 
 export type Post = {
@@ -40,3 +41,4 @@ export type Post = {
 };
 
 export type UsersResponse = { data: UserPreview[]; total: number; page: number; limit: number };
+export type PostsResponse = { data: Post[]; total: number; page: number; limit: number };

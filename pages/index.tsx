@@ -57,18 +57,16 @@ const Home: NextPage<Props> = ({ usersResponse }) => {
 };
 
 export const getStaticProps = async () => {
-  let usersResponse: UsersResponse = { data: [], total: 0, page: 0, limit: 0 };
   try {
-    const res = await fetchUsers();
-    if (res.error) throw new Error(res.error);
-    usersResponse = res;
+    const usersResponse = await fetchUsers();
+    if (usersResponse.error) throw new Error(usersResponse.error);
+    return { props: { usersResponse } };
   } catch (error) {
     console.log("FETCH_USERS_ERROR: ", error);
+    return {
+      props: { usersResponse: { data: [], total: 0, page: 0, limit: 0 } },
+    };
   }
-
-  return {
-    props: { usersResponse },
-  };
 };
 
 export default Home;

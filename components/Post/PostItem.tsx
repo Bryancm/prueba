@@ -2,46 +2,45 @@ import type { FC } from "react";
 import Image from "next/image";
 import Tag from "../Tag";
 import { HeartIcon } from "@heroicons/react/outline";
+import { Post } from "../../types";
+import { capitalize } from "../../util/string";
+import { formatPostDate } from "../../util/date";
 
-const tags = ["animal", "dog", "golden retriever"]; //array para maquetar
+interface Props {
+  post: Post;
+}
 
-const PostItem: FC = () => {
+const PostItem: FC<Props> = ({ post }) => {
+  const name = capitalize(`${post.owner.title} ${post.owner.firstName} ${post.owner.lastName}`);
+  const date = formatPostDate(new Date(post.publishDate));
+
   return (
     <div className="flex flex-col border rounded-md w-11/12 sm:w-3/4 m-4 pt-4 px-4 pb-2">
       <div className="flex flex-row justify-between items-center">
         <div className="flex flex-row items-center">
-          <Image
-            className="rounded-full"
-            layout="fixed"
-            src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png"
-            width={60}
-            height={60}
-          />
+          <Image className="rounded-full" layout="fixed" src={post.owner.picture} width={60} height={60} quality={100} />
           <div className="mx-2">
-            <h1 className="font-bold text-gray-800 text-sm sm:text-md">Mr. Rudi Droste</h1>
-            <p className="text-gray-400 text-xs sm:text-sm">60d0fe4f5311236168a109ce</p>
+            <h1 className="font-bold text-gray-800 text-sm sm:text-md">{name}</h1>
+            <p className="text-gray-400 text-xs sm:text-sm">{post.owner.id}</p>
           </div>
         </div>
-        <p className="text-gray-400 text-xs sm:text-sm text-right w-1/4">May 24 2020 09:53:17</p>
+        <p className="text-gray-400 text-xs sm:text-sm text-right w-1/4">{date}</p>
       </div>
-      <p className="text-gray-700 py-4 leading-relaxed">Gratitude short-coated tan dog on seashore</p>
+      <p className="text-gray-700 py-4 leading-relaxed">{post.text}</p>
       <div className="flex justify-center items-center p-2 relative h-80 sm:h-96">
-        <Image
-          className="rounded cursor-pointer"
-          objectFit="cover"
-          layout="fill"
-          src="https://images.ctfassets.net/lh3zuq09vnm2/yBDals8aU8RWtb0xLnPkI/19b391bda8f43e16e64d40b55561e5cd/How_tracking_user_behavior_on_your_website_can_improve_customer_experience.png"
-        />
+        <a className="cursor-pointer" href={post.image} target="_blank">
+          <Image className="rounded " objectFit="cover" layout="fill" src={post.image} />
+        </a>
       </div>
       <div className="flex flex-row justify-between items-center pt-4">
         <div className="flex flex-row flex-wrap">
-          {tags.map((tag) => (
+          {post.tags.map((tag) => (
             <Tag key={tag} text={tag} />
           ))}
         </div>
         <button className="flex flex-row items-center text-red-600 transition ease-in duration-200 hover:text-red-500 hover:scale-110">
           <HeartIcon className="h-6 w-6  mr-2" />
-          <p className="text-sm">46</p>
+          <p className="text-sm">{post.likes}</p>
         </button>
       </div>
     </div>
