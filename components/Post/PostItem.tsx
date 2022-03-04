@@ -18,7 +18,7 @@ const PostItem: FC = () => {
             height={60}
           />
           <div className="mx-2">
-            <h1 className="font-bold text-sm sm:text-md">Mr. Rudi Droste</h1>
+            <h1 className="font-bold text-gray-800 text-sm sm:text-md">Mr. Rudi Droste</h1>
             <p className="text-gray-400 text-xs sm:text-sm">60d0fe4f5311236168a109ce</p>
           </div>
         </div>

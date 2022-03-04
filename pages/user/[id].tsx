@@ -39,7 +39,7 @@ const UserProfile: NextPage = () => {
               />
               <div className="flex flex-col justify-between p-1 sm:p-6">
                 <div className="m-3">
-                  <h1 className="text-4xl font-bold my-1">Mr. Rudi Droste</h1>
+                  <h1 className="text-4xl text-gray-800 font-bold my-1">Mr. Rudi Droste</h1>
                   <p className="text-sm text-gray-400">60d0fe4f5311236168a109ce</p>
                 </div>
                 <div className="flex flex-row text-gray-400">

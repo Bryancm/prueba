@@ -22,7 +22,7 @@ const UserItem: FC<Props> = ({ goToUserProfile }) => {
         height={120}
       />
       <div className="m-2 text-center">
-        <h1 className="font-bold m-1 text-lg sm:text-md">Mr. Rudi Droste</h1>
+        <h1 className="font-bold m-1 text-gray-800 text-lg sm:text-md">Mr. Rudi Droste</h1>
         <p className="text-gray-400 text-md sm:text-sm">60d0fe4f5311236168a109ce</p>
       </div>
     </button>
