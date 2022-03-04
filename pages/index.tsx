@@ -12,13 +12,13 @@ import person from "../public/img/person.svg";
 import person2 from "../public/img/person2.svg";
 
 import { fetchUsers } from "../api/user";
-import { UsersResponse } from "../types";
+import { UserPreview } from "../types";
 
 interface Props {
-  usersResponse: UsersResponse;
+  users: UserPreview[];
 }
 
-const Home: NextPage<Props> = ({ usersResponse }) => {
+const Home: NextPage<Props> = ({ users }) => {
   const [opacity, setOpacity] = useState("opacity-0");
   const router = useRouter();
 
@@ -49,7 +49,7 @@ const Home: NextPage<Props> = ({ usersResponse }) => {
             <Image src={person} layout="fixed" width={180} height={180} />
           </div>
         </div>
-        <UserList usersResponse={usersResponse} goToUserProfile={goToUserProfile} />
+        <UserList users={users} goToUserProfile={goToUserProfile} />
         <Footer />
       </div>
     </div>
@@ -58,13 +58,13 @@ const Home: NextPage<Props> = ({ usersResponse }) => {
 
 export const getStaticProps = async () => {
   try {
-    const usersResponse = await fetchUsers();
-    if (usersResponse.error) throw new Error(usersResponse.error);
-    return { props: { usersResponse } };
+    const users = await fetchUsers(0, 12);
+    if (users.error) throw new Error(users.error);
+    return { props: { users: users.data } };
   } catch (error) {
     console.log("FETCH_USERS_ERROR: ", error);
     return {
-      props: { usersResponse: { data: [], total: 0, page: 0, limit: 0 } },
+      props: { users: [] },
     };
   }
 };

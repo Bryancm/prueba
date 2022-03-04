@@ -37,18 +37,16 @@ const PostItem: FC<Props> = ({ post }) => {
         <p className="text-gray-400 text-xs sm:text-sm text-right w-1/4">{date}</p>
       </div>
       <p className="text-gray-700 py-4 leading-relaxed">{post.text}</p>
-      <div className="flex justify-center items-center p-2 relative h-80 sm:h-96">
-        <a className="cursor-pointer" href={post.image} target="_blank">
-          <Image
-            placeholder="blur"
-            blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(384, 384))}`}
-            className="rounded "
-            objectFit="cover"
-            layout="fill"
-            src={post.image}
-          />
-        </a>
-      </div>
+      <a className="cursor-pointer flex justify-center items-center p-2 relative h-80 sm:h-96" href={post.image} target="_blank">
+        <Image
+          placeholder="blur"
+          blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(384, 384))}`}
+          className="rounded "
+          objectFit="cover"
+          layout="fill"
+          src={post.image}
+        />
+      </a>
       <div className="flex flex-row justify-between items-center pt-4">
         <div className="flex flex-row flex-wrap">
           {post.tags.map((tag) => (

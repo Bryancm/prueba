@@ -10,17 +10,17 @@ import Footer from "../../components/Footer";
 import PostList from "../../components/Post/PostList";
 
 import { fetchUserPosts, fetchUserProfile } from "../../api/user";
-import { PostsResponse, User } from "../../types";
+import { Post, User } from "../../types";
 import { capitalize } from "../../util/string";
 import { formatBirthday } from "../../util/date";
 import { toBase64, shimmer } from "../../util/placeholder";
 
 interface Props {
   user: User;
-  postsResponse: PostsResponse;
+  posts: Post[];
 }
 
-const UserProfile: NextPage<Props> = ({ user, postsResponse }) => {
+const UserProfile: NextPage<Props> = ({ user, posts }) => {
   const name = capitalize(`${user.title} ${user.firstName} ${user.lastName}`);
   const gender = capitalize(user.gender);
   const birthday = formatBirthday(new Date(user.dateOfBirth));
@@ -88,7 +88,7 @@ const UserProfile: NextPage<Props> = ({ user, postsResponse }) => {
               </a>
             </div>
           </div>
-          <PostList postsResponse={postsResponse} />
+          <PostList posts={posts} userId={user.id} />
         </div>
         <Footer />
       </div>
@@ -99,10 +99,10 @@ const UserProfile: NextPage<Props> = ({ user, postsResponse }) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   try {
     const user = await fetchUserProfile(query?.id);
-    const postsResponse = await fetchUserPosts(query?.id);
-    if (user.error || postsResponse.error) throw new Error(user.error || postsResponse.error);
+    const posts = await fetchUserPosts(0, 6, query?.id);
+    if (user.error || posts.error) throw new Error(user.error || posts.error);
     return {
-      props: { user, postsResponse },
+      props: { user, posts: posts.data },
     };
   } catch (e) {
     console.log("FETCH_USER_PROFILE_ERROR: ", e);
