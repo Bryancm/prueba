@@ -58,16 +58,16 @@ const UserProfile: NextPage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex flex-row justify-center sm:justify-start items-center py-1 sm:py-4">
+            <div className="flex flex-row justify-center items-center py-1 sm:py-4">
               <a
                 href="mailto: sara.andersen@example.com"
-                className="flex flex-row m-1 items-center transition ease-in duration-200 text-gray-400 hover:text-gray-700 ">
+                className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700 ">
                 <MailIcon className="h-5 w-5 mx-1" />
                 <p className="text-sm ">sara.andersen@example.com</p>
               </a>
               <a
                 href="tel:92694011"
-                className="flex flex-row m-1 items-center transition ease-in duration-200 text-gray-400 hover:text-gray-700">
+                className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700">
                 <PhoneIcon className="h-5 w-" />
                 <p className="text-sm">92694011</p>
               </a>

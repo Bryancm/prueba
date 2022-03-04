@@ -11,7 +11,6 @@ const users = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // array para maquetar
 const UserList: FC<Props> = ({ goToUserProfile }) => {
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-6xl font-bold m-4">People</h1>
       <SearchInput />
       <div className="flex flex-row justify-center items-center w-full sm:max-w-6xl flex-wrap sm:p-4">
         {users.map((user) => (

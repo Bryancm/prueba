@@ -13,7 +13,7 @@ const UserItem: FC<Props> = ({ goToUserProfile }) => {
   return (
     <button
       onClick={onClick}
-      className="flex flex-col justify-center items-center border rounded-md w-80 h-80 sm:w-60 sm:h-60 m-4 transition ease-out duration-500 hover:shadow-lg hover:border-gray-400">
+      className="flex flex-col justify-center items-center border rounded-md w-80 h-80 sm:w-60 sm:h-60 m-4 transition ease-out duration-500 hover:shadow-lg hover:border-yellow-500">
       <Image
         className="rounded-full"
         layout="fixed"
