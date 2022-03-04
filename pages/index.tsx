@@ -11,7 +11,14 @@ import UserList from "../components/User/UserList";
 import person from "../public/img/person.svg";
 import person2 from "../public/img/person2.svg";
 
-const Home: NextPage = () => {
+import { fetchUsers } from "../api/user";
+import { UsersResponse } from "../types";
+
+interface Props {
+  usersResponse: UsersResponse;
+}
+
+const Home: NextPage<Props> = ({ usersResponse }) => {
   const [opacity, setOpacity] = useState("opacity-0");
   const router = useRouter();
 
@@ -42,11 +49,26 @@ const Home: NextPage = () => {
             <Image src={person} layout="fixed" width={180} height={180} />
           </div>
         </div>
-        <UserList goToUserProfile={goToUserProfile} />
+        <UserList usersResponse={usersResponse} goToUserProfile={goToUserProfile} />
         <Footer />
       </div>
     </div>
   );
+};
+
+export const getStaticProps = async () => {
+  let usersResponse: UsersResponse = { data: [], total: 0, page: 0, limit: 0 };
+  try {
+    const res = await fetchUsers();
+    if (res.error) throw new Error(res.error);
+    usersResponse = res;
+  } catch (error) {
+    console.log("FETCH_USERS_ERROR: ", error);
+  }
+
+  return {
+    props: { usersResponse },
+  };
 };
 
 export default Home;

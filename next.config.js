@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["images.ctfassets.net"],
+    domains: ["images.ctfassets.net", "randomuser.me"],
+  },
+  env: {
+    API_ID: "62222f5a961f3866dd9375f0",
   },
 };
 
