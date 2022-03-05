@@ -48,7 +48,8 @@ const PostItem: FC<Props> = ({ post }) => {
         aria-label="Link to post image"
         className="cursor-pointer flex justify-center items-center p-2 relative h-80 sm:h-96"
         href={post.image}
-        target="_blank">
+        target="_blank"
+        rel="noreferrer">
         <Image
           placeholder="blur"
           blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(384, 384))}`}
