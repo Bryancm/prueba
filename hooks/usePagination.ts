@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { Post, UserPreview } from "../types";
 
-//TODO: PAGINATION ERROR HANDLING, DEPLOYMENT, GITHUB README, CODE REVIEW
-
 export const usePagination = (
   fetchData: (page: number, limit: number, id?: string) => Promise<any>,
   initData: UserPreview[] | Post[],
