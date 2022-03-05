@@ -12,7 +12,7 @@ interface Props {
 }
 
 const PostList: FC<Props> = ({ posts, userId }) => {
-  const { nextPage, hasMore, data } = usePagination(fetchUserPosts, posts, userId, 6);
+  const { nextPage, hasMore, error, data } = usePagination(fetchUserPosts, posts, userId, 6);
   const postData = data as Post[];
   const existPosts = posts.length > 0;
   return (
@@ -28,7 +28,9 @@ const PostList: FC<Props> = ({ posts, userId }) => {
               <Spinner />
             </div>
           }
-          endMessage={<p className="w-full text-center text-gray-800 text-2xl font-bold p-4">Yay! You have seen it all</p>}>
+          endMessage={
+            <p className="w-full text-center text-gray-800 text-2xl font-bold p-4">{error ? error : "Yay! You have seen it all"}</p>
+          }>
           {postData.map((post) => (
             <PostItem key={post.id} post={post} />
           ))}

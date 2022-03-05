@@ -23,7 +23,9 @@ const NotFound: NextPage = () => {
       <div className={`transition-opacity duration-300 ease-in ${opacity}`}>
         <Header />
         <div className="h-screen flex flex-col justify-center items-center ">
-          <h1 className="text-gray-800 text-6xl font-bold">404 Not Found</h1>
+          <h1 aria-label="Page not found" className="text-gray-800 text-6xl font-bold">
+            404 Not Found
+          </h1>
           <Link href="/">
             <button className="border shadow rounded text-gray-400 text-2xl font-bold m-4 px-6 py-2">Go Home</button>
           </Link>

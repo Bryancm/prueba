@@ -14,7 +14,7 @@ interface Props {
 }
 
 const UserList: FC<Props> = ({ goToUserProfile, users }) => {
-  const { nextPage, hasMore, data } = usePagination(fetchUsers, users);
+  const { nextPage, hasMore, error, data } = usePagination(fetchUsers, users);
   const [text, setText] = useState("");
   const usersData = data as UserPreview[];
   const usersExist = users.length > 0;
@@ -44,7 +44,9 @@ const UserList: FC<Props> = ({ goToUserProfile, users }) => {
               <Spinner />
             </div>
           }
-          endMessage={<p className="w-full text-center text-gray-800 text-2xl font-bold p-4">Yay! You have seen it all</p>}>
+          endMessage={
+            <p className="w-full text-center text-gray-800 text-2xl font-bold p-4">{error ? error : "Yay! You have seen it all"}</p>
+          }>
           {filteredUsers.map((user) => (
             <UserItem key={user.id} user={user} goToUserProfile={goToUserProfile} />
           ))}
