@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import { ChangeEvent, FC, useState } from "react";
 import { UserPreview } from "../../types";
 import SearchInput from "../Input/SearchInput";
 import UserItem from "./UserItem";
@@ -6,6 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { usePagination } from "../../hooks/usePagination";
 import { fetchUsers } from "../../api/user";
 import Spinner from "../Spinner";
+import { filterUsersByName } from "../../util/filter";
 
 interface Props {
   goToUserProfile: (href: string) => void;
@@ -14,12 +15,19 @@ interface Props {
 
 const UserList: FC<Props> = ({ goToUserProfile, users }) => {
   const { nextPage, hasMore, data } = usePagination(fetchUsers, users);
+  const [text, setText] = useState("");
   const usersData = data as UserPreview[];
   const usersExist = users.length > 0;
 
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setText(e.target.value);
+  };
+
+  const filteredUsers = filterUsersByName(usersData, text);
+
   return (
     <div className="flex flex-col justify-center items-center">
-      <SearchInput />
+      <SearchInput value={text} onChange={onChange} />
       {!usersExist && (
         <div className="flex justify-center items-center h-96">
           <h1 className="text-gray-800 text-2xl font-bold">Users Not Found</h1>
@@ -37,7 +45,7 @@ const UserList: FC<Props> = ({ goToUserProfile, users }) => {
             </div>
           }
           endMessage={<p className="w-full text-center text-gray-800 text-2xl font-bold p-4">Yay! You have seen it all</p>}>
-          {usersData.map((user) => (
+          {filteredUsers.map((user) => (
             <UserItem key={user.id} user={user} goToUserProfile={goToUserProfile} />
           ))}
         </InfiniteScroll>
