@@ -39,6 +39,3 @@ export type Post = {
   publishDate: string;
   owner: UserPreview;
 };
-
-export type UsersResponse = { data: UserPreview[]; total: number; page: number; limit: number };
-export type PostsResponse = { data: Post[]; total: number; page: number; limit: number };
