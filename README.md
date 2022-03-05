@@ -26,7 +26,7 @@ Para ejecutar este proyecto necesitas agregar las siquientes variables de entorn
     ├── styles                  # Estilos (directivas tailwindcss)
     ├── util                    # Funciones útiles (formatear fecha, filtros, etc)
     ├── types.ts                # Declaración de tipos
-    ├── next.config.js          # Configuración NextJS
+    ├── next.config.js          # Configuración NextJS (variable de entorno y image domains)
     ├── tailwind.config.js      # Configuración TailwindCSS
     └── README.md
 
