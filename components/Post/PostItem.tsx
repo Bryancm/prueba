@@ -24,26 +24,38 @@ const PostItem: FC<Props> = ({ post }) => {
             blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(60, 60))}`}
             className="rounded-full"
             layout="fixed"
+            alt={`Profile picture ${name}`}
             src={post.owner.picture}
             width={60}
             height={60}
             quality={100}
           />
           <div className="mx-2">
-            <h1 className="font-bold text-gray-800 text-sm sm:text-md">{name}</h1>
+            <p aria-label={`Post Owner: ${name}`} className="font-bold text-gray-800 text-sm sm:text-md">
+              {name}
+            </p>
             <p className="text-gray-400 text-xs sm:text-sm">{post.owner.id}</p>
           </div>
         </div>
-        <p className="text-gray-400 text-xs sm:text-sm text-right w-1/4">{date}</p>
+        <p aria-label={`Post Date: ${date}`} className="text-gray-400 text-xs sm:text-sm text-right w-1/4">
+          {date}
+        </p>
       </div>
-      <p className="text-gray-700 py-4 leading-relaxed">{post.text}</p>
-      <a className="cursor-pointer flex justify-center items-center p-2 relative h-80 sm:h-96" href={post.image} target="_blank">
+      <p aria-label={`Post Description: ${post.text}`} className="text-gray-700 py-4 leading-relaxed">
+        {post.text}
+      </p>
+      <a
+        aria-label="Link to post image"
+        className="cursor-pointer flex justify-center items-center p-2 relative h-80 sm:h-96"
+        href={post.image}
+        target="_blank">
         <Image
           placeholder="blur"
           blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(384, 384))}`}
           className="rounded "
           objectFit="cover"
           layout="fill"
+          alt={`Post Image ${name} ${date}`}
           src={post.image}
         />
       </a>
@@ -53,9 +65,13 @@ const PostItem: FC<Props> = ({ post }) => {
             <Tag key={tag} text={tag} />
           ))}
         </div>
-        <button className="flex flex-row items-center text-red-600 transition ease-in duration-200 hover:text-red-500 hover:scale-110">
+        <button
+          aria-label="Like"
+          className="flex flex-row items-center text-red-600 transition ease-in duration-200 hover:text-red-500 hover:scale-110">
           <HeartIcon className="h-6 w-6  mr-2" />
-          <p className="text-sm">{post.likes}</p>
+          <p aria-label={`${post.likes} likes`} className="text-sm">
+            {post.likes}
+          </p>
         </button>
       </div>
     </div>

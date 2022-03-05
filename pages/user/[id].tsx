@@ -39,56 +39,72 @@ const UserProfile: NextPage<Props> = ({ user, posts }) => {
       </Head>
       <div className={`transition-opacity duration-300 ease-in ${opacity}`}>
         <Header />
+
         <div className="flex flex-col justify-center items-center">
-          <div className="flex flex-col p-2 sm:p-4">
-            <div className="flex flex-row justify-center items-center flex-wrap p-2">
-              <Image
-                placeholder="blur"
-                blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(180, 180))}`}
-                className="rounded-full"
-                layout="fixed"
-                src={user.picture}
-                width={180}
-                height={180}
-                quality={100}
-              />
-              <div className="flex flex-col justify-between p-1 sm:p-6">
-                <div className="m-3">
-                  <h1 className="text-4xl text-gray-800 font-bold my-1">{name}</h1>
-                  <p className="text-sm text-gray-400">{user.id}</p>
-                </div>
-                <div className="flex flex-row text-gray-400">
-                  <div className="flex flex-row m-1 items-center">
-                    <CakeIcon className="h-5 w-5  mx-1" />
-                    <p className="text-sm ">{birthday}</p>
+          <section aria-label="User profile">
+            <div className="flex flex-col p-2 sm:p-4">
+              <div className="flex flex-row justify-center items-center flex-wrap p-2">
+                <Image
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(180, 180))}`}
+                  className="rounded-full"
+                  layout="fixed"
+                  src={user.picture}
+                  width={180}
+                  height={180}
+                  quality={100}
+                  alt={`Profile picture ${name}`}
+                />
+                <div className="flex flex-col justify-between p-1 sm:p-6">
+                  <div className="m-3">
+                    <h1 aria-label={name} className="text-4xl text-gray-800 font-bold my-1">
+                      {name}
+                    </h1>
+                    <p className="text-sm text-gray-400">{user.id}</p>
                   </div>
-                  <div className="flex flex-row m-1 items-center">
-                    <UserCircleIcon className="h-5 w-5  mx-1" />
-                    <p className="text-sm t">{gender}</p>
-                  </div>
-                  <div className="flex flex-row m-1 items-center">
-                    <LocationMarkerIcon className="h-5 w-5  mx-1" />
-                    <p className="text-sm ">{user.location.country}</p>
+                  <div className="flex flex-row text-gray-400">
+                    <div className="flex flex-row m-1 items-center">
+                      <CakeIcon className="h-5 w-5  mx-1" />
+                      <p aria-label="birthday" className="text-sm ">
+                        {birthday}
+                      </p>
+                    </div>
+                    <div className="flex flex-row m-1 items-center">
+                      <UserCircleIcon className="h-5 w-5  mx-1" />
+                      <p aria-label="gender" className="text-sm t">
+                        {gender}
+                      </p>
+                    </div>
+                    <div className="flex flex-row m-1 items-center">
+                      <LocationMarkerIcon className="h-5 w-5  mx-1" />
+                      <p aria-label="country" className="text-sm ">
+                        {user.location.country}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
+              <div className="flex flex-row justify-center items-center py-1 sm:py-4 flex-wrap">
+                <a
+                  aria-label="link to mail"
+                  href={`mailto: ${user.email}`}
+                  className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700 ">
+                  <MailIcon className="h-5 w-5 mx-1" />
+                  <p className="text-sm ">{user.email}</p>
+                </a>
+                <a
+                  aria-label="link to phone number"
+                  href={`tel:${user.phone}`}
+                  className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700">
+                  <PhoneIcon className="h-5 w-" />
+                  <p className="text-sm">${user.phone}</p>
+                </a>
+              </div>
             </div>
-            <div className="flex flex-row justify-center items-center py-1 sm:py-4">
-              <a
-                href={`mailto: ${user.email}`}
-                className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700 ">
-                <MailIcon className="h-5 w-5 mx-1" />
-                <p className="text-sm ">{user.email}</p>
-              </a>
-              <a
-                href={`tel:${user.phone}`}
-                className="flex flex-row m-1 items-center transition ease-in duration-200 text-yellow-600 hover:text-yellow-700">
-                <PhoneIcon className="h-5 w-" />
-                <p className="text-sm">${user.phone}</p>
-              </a>
-            </div>
-          </div>
-          <PostList posts={posts} userId={user.id} />
+          </section>
+          <section aria-label="User's post list">
+            <PostList posts={posts} userId={user.id} />
+          </section>
         </div>
         <Footer />
       </div>

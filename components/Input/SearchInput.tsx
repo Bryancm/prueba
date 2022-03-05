@@ -11,6 +11,7 @@ const SearchInput: FC<Props> = ({ value, onChange }) => {
     <div className="m-4 w-full md:w-1/2 relative py-4">
       <SearchIcon className="absolute top-7 left-3 h-6 w-6 text-yellow-500" />
       <input
+        aria-label="Type a name to start searching"
         value={value}
         onChange={onChange}
         placeholder="Search"

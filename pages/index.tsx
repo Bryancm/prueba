@@ -41,15 +41,21 @@ const Home: NextPage<Props> = ({ users }) => {
 
       <div className={`transition-opacity duration-300 ease-in ${opacity}`}>
         <Header />
-        <div className="flex flex-col justify-center items-center py-4">
-          <h1 className="text-4xl font-bold m-4 text-gray-800">Find People</h1>
-          <p className="text-2xl font-bold text-center text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <div className="flex flex-row justify-center items-center py-4">
-            <Image src={person2} layout="fixed" width={180} height={180} />
-            <Image src={person} layout="fixed" width={180} height={180} />
+        <section aria-label="Introduction">
+          <div className="flex flex-col justify-center items-center py-4">
+            <h1 aria-label="A web page to find people" className="text-4xl font-bold m-4 text-gray-800">
+              Find People
+            </h1>
+            <p className="text-2xl font-bold text-center text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <div className="flex flex-row justify-center items-center py-4">
+              <Image src={person2} layout="fixed" width={180} height={180} alt="Person Ilustration" />
+              <Image src={person} layout="fixed" width={180} height={180} alt="Person Ilustration" />
+            </div>
           </div>
-        </div>
-        <UserList users={users} goToUserProfile={goToUserProfile} />
+        </section>
+        <section aria-label="People List">
+          <UserList users={users} goToUserProfile={goToUserProfile} />
+        </section>
         <Footer />
       </div>
     </div>
